@@ -1,0 +1,19 @@
+{
+  "name": "curso-puppeteer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --forceExit"
+  },
+  "keywords": [],
+  "author": "Julio Barrios <julio.barrios.9618@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^27.5.1",
+    "puppeteer": "^13.5.1"
+  },
+  "devDependencies": {
+    "prettier": "^2.6.0"
+  }
+}
