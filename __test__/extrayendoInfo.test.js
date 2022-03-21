@@ -1,8 +1,10 @@
 const puppeteer = require('puppeteer') 
 
+const { getText, getCount } = require('../lib/helpers')
+
 describe('Extrayendo informacion', () => {
 
-  let browser
+  let browser 
   let page
   // beforeEach Antes de cada una 
   beforeAll(async () => { // Antes de todas
@@ -14,7 +16,7 @@ describe('Extrayendo informacion', () => {
     page = await browser.newPage()
     await page.goto('https://platzi.com', { waitUntil: 'networkidle0' }) 
 
-  }, 10000)
+  }, 100000)
   // afterEach Despues de cada una
   afterAll(async () => { // Despues de todas
 
@@ -34,38 +36,18 @@ describe('Extrayendo informacion', () => {
 
   it('Extraer la informacion de un elemento', async () => {
     
-    await page.waitForSelector('#promos > main > div > header > nav > div.Actionsv2 > a')
+    await page.waitForSelector('#home-public > div > div.BaseLayout > header > nav > div.Logo > div > a > div > figure.LogoHeader-name.is-live > img')
 
-    const nameButton = await page.$eval('#promos > main > div > header > nav > div.Actionsv2 > a', (button) => button.textContent)
+    const nameButton = await getText(page, '#home-public > div > div.BaseLayout > header > nav > div.Logo > div > a > div > figure.LogoHeader-name.is-live > img')
 
-    console.log('nameButton', nameButton)
-    
-    const [button] = await page.$x('//*[@id="promos"]/main/div/header/nav/div[4]/div/a')
-    const propiedad = await button.getProperty('textContent')
-    const text = await propiedad.jsonValue()
-    
-    console.log('text', text)
-
-    //Segunda forma
-
-    const text2 = await page.evaluate((name) => name.textContent, button) //Pasamos el elento que queremos"button"
-    
-    console.log('text2', text2)
-    
-    // Tercer forma
-    
-    const button3 = await page.waitForXPath('//*[@id="promos"]/main/div/header/nav/div[4]/div/a')
-    const text3 = await page.evaluate((name) => name.textContent, button3) //Pasamos el elento que queremos"button"
-    console.log('text3', text3)
-
-
+    console.log('nameButton', nameButton); 
 
   }, 350000)
 
   it('Contar los elementos de una pagina', async () => {
     
-
-    const images = await page.$$eval('img', (imagenes) => imagenes.length)
+    // const images = await getCount(page,'img')
+    const images = await getCount(page ,'img')
 
     console.log('images', images)
 

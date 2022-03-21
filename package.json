@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --forceExit"
+    "test": "jest --forceExi --detecOpenHandles",
+    "test-emulation-de-dispositivos": "jest --forceExit --detectOpenHandles __test__/emulacionDeDispositivos.test.js"
   },
   "keywords": [],
   "author": "Julio Barrios <julio.barrios.9618@gmail.com>",
